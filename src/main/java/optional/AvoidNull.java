@@ -5,6 +5,15 @@ import java.util.function.Supplier;
 
 public class AvoidNull {
 
+  public static <T> Optional<T> resolve(Supplier<T> resolver) {
+    try {
+      T result = resolver.get();
+      return Optional.ofNullable(result);
+    } catch (NullPointerException e) {
+      return Optional.empty();
+    }
+  }
+
   static class Outer {
 
     Nested nested;
@@ -29,15 +38,6 @@ public class AvoidNull {
 
     String getFoo() {
       return foo;
-    }
-  }
-
-  public static <T> Optional<T> resolve(Supplier<T> resolver) {
-    try {
-      T result = resolver.get();
-      return Optional.ofNullable(result);
-    } catch (NullPointerException e) {
-      return Optional.empty();
     }
   }
 }
