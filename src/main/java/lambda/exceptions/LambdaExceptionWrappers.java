@@ -2,9 +2,9 @@ package lambda.exceptions;
 
 import java.util.function.Consumer;
 
-public class LambdaExceptionWrappers {
+class LambdaExceptionWrappers {
 
-  public static Consumer<Integer> lambdaWrapper(Consumer<Integer> consumer) {
+  static Consumer<Integer> lambdaWrapper(Consumer<Integer> consumer) {
     return i -> {
       try {
         consumer.accept(i);
@@ -29,7 +29,7 @@ public class LambdaExceptionWrappers {
     };
   }
 
-  public static <T> Consumer<T> throwingConsumerWrapper(ThrowingConsumer<T, Exception> throwingConsumer) {
+  static <T> Consumer<T> throwingConsumerWrapper(ThrowingConsumer<T, Exception> throwingConsumer) {
     return i -> {
       try {
         throwingConsumer.accept(i);
@@ -39,7 +39,7 @@ public class LambdaExceptionWrappers {
     };
   }
 
-  public static <T, E extends Exception> Consumer<T> handlingConsumerWrapper(ThrowingConsumer<T, E> throwingConsumer, Class<E> exceptionClass) {
+  static <T, E extends Exception> Consumer<T> handlingConsumerWrapper(ThrowingConsumer<T, E> throwingConsumer, Class<E> exceptionClass) {
     return i -> {
       try {
         throwingConsumer.accept(i);

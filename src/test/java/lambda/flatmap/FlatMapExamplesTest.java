@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,9 +19,9 @@ class FlatMapExamplesTest {
   @BeforeEach
   void setUp() {
     list = new ArrayList<>();
-    list.add(Set.of("a", "b", "c"));
+    list.add(Stream.of("a", "b", "c").collect(Collectors.toSet()));
     list.add(null);
-    list.add(Set.of("abc ", "ab", "cc"));
+    list.add(Stream.of("abc ", "ab", "cc").collect(Collectors.toSet()));
   }
 
   @Test
